@@ -8,7 +8,7 @@ var new_url;
 var CUIT;
 let random;
 let counter=0;
-let DNI1;
+//let DNI1;
 let i;
 for(i=min;i<max;i++){
     //random= Math.random() * (max - min) + min;
@@ -23,10 +23,10 @@ for(i=min;i<max;i++){
  function cb1(err,response,html){
      
     if(html){
-        async:false;
-        let ch=cheerio.load(html);
-        let DNI=ch(`input[id="searchBox"]`);
-        DNI1=DNI[0].attribs.value;
+        //async:false;
+        //let ch=cheerio.load(html);
+        //let DNI=ch(`input[id="searchBox"]`);
+        //DNI1=DNI[0].attribs.value;
         extract_url_FLname(html);
         
     }
@@ -59,8 +59,8 @@ function extract_1site_Data(html){
     let full_name=$("h1 span").text();
     let city=$(`span[itemprop="addressLocality"]`).text();
     let state=$(`span[itemprop="addressRegion"]`).text();
-    let DNI=$(`li>span.p_cuit.c_black`);
     let CUIT1=$(`.p_cuit_title  .p_cuit`).text();
+    let DNI=CUIT1.split("-")[1];
     CUIT1=CUIT1.replace(/-/g,"");
     let name_array=full_name.split(" ");
     let gender=$(`span[itemprop="gender"]`).text();
@@ -79,7 +79,7 @@ function extract_1site_Data(html){
     console.log("GENDER: "+gender);
     counter=counter+1;
     console.log("COUNTER: "+counter);
-    console.log("DNI: "+DNI1);
+    console.log("DNI: "+DNI);
     console.log("--------------------------------------");
 }
 }
